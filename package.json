@@ -1,0 +1,28 @@
+{
+  "name": "arena-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aanvarov/arena-backend.git"
+  },
+  "author": "Abror Anvarov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aanvarov/arena-backend/issues"
+  },
+  "homepage": "https://github.com/aanvarov/arena-backend#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.4"
+  }
+}
