@@ -10,6 +10,7 @@ const foodSchema = new Schema({
   type: {
     type: String,
     required: true,
+    enum: ["drinks", "sweets"],
   },
   price: {
     type: String,
@@ -24,8 +25,12 @@ const foodSchema = new Schema({
     default: false,
   },
   createdAt: {
-    type: Number,
+    type: Date,
     default: Date.now(),
+  },
+  deletedAt: {
+    type: Date,
+    default: null,
   },
 });
 

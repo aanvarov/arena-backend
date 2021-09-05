@@ -31,14 +31,15 @@ const playstationSchema = new Schema({
   },
   createdAt: {
     default: Date.now(),
-    type: Number,
+    type: Date,
   },
   updatedAt: {
-    default: Date.now(),
-    type: Number,
+    type: Date,
+    default: null,
   },
   deletedAt: {
-    type: String,
+    type: Date,
+    default: null,
   },
   isDeleted: { type: Boolean, default: false },
 });

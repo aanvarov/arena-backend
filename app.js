@@ -8,6 +8,7 @@ const port = process.env.PORT || 7007;
 // local mongodb database
 const localDatabase = "mongodb://localhost/arena";
 
+const playstationRouter = require("./routes/playstations");
 const foodRouter = require("./routes/foods");
 
 const app = express();
@@ -18,7 +19,8 @@ app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/food", foodRouter);
+app.use("/playstations", playstationRouter);
+app.use("/foods", foodRouter);
 
 mongoose
   .connect(localDatabase, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -1,22 +1,22 @@
-const Food = require("../models/food");
+const Playstation = require("../models/playstation");
 
-exports.createFood = (req, res) => {
-  Food.create({
+exports.createPlaystation = (req, res) => {
+  Playstation.create({
     ...req.body,
   })
     .then((data) => {
-      res.json({ success: true, payload: data, msg: "food_created" });
+      res.json({ success: true, payload: data, msg: "playstation_created" });
     })
     .catch((err) => {
       res.json({ success: false, msg: err.message });
     });
 };
 
-exports.fetchFoodById = (req, res) => {
+exports.fetchPlaystationById = (req, res) => {
   const { id } = req.params;
-  Food.findById(id)
-    .then((food) => {
-      res.json(food);
+  Playstation.findById(id)
+    .then((playstation) => {
+      res.json(playstation);
     })
     .catch((err) => res.send(err));
 };
@@ -27,7 +27,7 @@ exports.deleteFoodById = (req, res) => {
     isDeleted: true,
     deletedAt: Date.now(),
   };
-  Food.findByIdAndUpdate(id, { $set: updatedData }, { new: true })
+  Playstation.findByIdAndUpdate(id, { $set: updatedData }, { new: true })
     .then(() => {
       res.json({ success: true, msg: "Successfully deleted" });
     })
@@ -35,7 +35,7 @@ exports.deleteFoodById = (req, res) => {
 };
 
 exports.fetchAllFoods = (req, res) => {
-  Food.find({ isDeleted: false })
-    .then((foods) => res.json(foods))
+  Playstation.find({ isDeleted: false })
+    .then((playstations) => res.json(playstations))
     .catch((err) => res.send(err));
 };
