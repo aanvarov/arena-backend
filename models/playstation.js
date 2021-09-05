@@ -29,6 +29,18 @@ const playstationSchema = new Schema({
     type: Number,
     default: 0,
   },
+  createdAt: {
+    default: Date.now(),
+    type: Number,
+  },
+  updatedAt: {
+    default: Date.now(),
+    type: Number,
+  },
+  deletedAt: {
+    type: String,
+  },
+  isDeleted: { type: Boolean, default: false },
 });
 
 playstationSchema.plugin(mongoosePaginate);
