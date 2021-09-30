@@ -23,7 +23,10 @@ const adminSchema = new Schema({
     type: String,
     default: 'admin'
   },
-  createdAt: String,
+  createdAt: {
+    type: String,
+    default: new Date()
+  },
   isDeleted: {
     type: Boolean,
     default: false

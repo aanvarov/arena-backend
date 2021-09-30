@@ -17,7 +17,7 @@ exports.fetchAdminById = (req, res) => {
     .catch((err) => res.send(err));
 };
 
-exports.createAdmin = (req, res) => {
+exports.createAdmin = async (req, res) => {
   const {
     password
   } = req.body;

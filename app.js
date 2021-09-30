@@ -10,7 +10,8 @@ const localDatabase = "mongodb://localhost/arena";
 
 const playstationRouter = require("./routes/playstations");
 const foodRouter = require("./routes/foods");
-const adminRouter = require('./routes/admins')
+const adminRouter = require('./routes/admins');
+const authRouter = require('./routes/auth')
 
 const app = express();
 const server = http.createServer(app);
@@ -25,9 +26,10 @@ app.use(express.urlencoded({
   extended: false
 }));
 
+app.use("/auth", authRouter);
 app.use("/playstations", playstationRouter);
 app.use("/foods", foodRouter);
-app.use('/admin', adminRouter)
+app.use("/admins", adminRouter);
 
 mongoose
   .connect(localDatabase, {

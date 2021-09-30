@@ -5,7 +5,7 @@ const {
   createToken
 } = require('../utils/index');
 
-exports.singIn = async (req, res) => {
+exports.signIn = async (req, res) => {
   const {
     password,
     phone,
@@ -20,11 +20,16 @@ exports.singIn = async (req, res) => {
       password: hashedPassword,
       _id
     } = admin;
-    const isPasswordCorrect = await bcrypt.compare(password, hashPassword);
+    const isPasswordCorrect = await bcrypt.compare(password, hashedPassword);
     if (isPasswordCorrect) {
       const token = createToken({
         _id,
         role
+      });
+      res.json({
+        user: admin,
+        token,
+        success: true
       });
     } else {
       res.status(422).json({
@@ -32,8 +37,6 @@ exports.singIn = async (req, res) => {
         success: false
       });
     }
-
-
   } catch (err) {
     res.status(422).json({
       msg: err.message,
