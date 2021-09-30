@@ -16,3 +16,17 @@ exports.fetchAdminById = (req, res) => {
     .then((admin) => res.json(admin))
     .catch((err) => res.send(err));
 };
+
+exports.createAdmin = (req, res) => {
+  const {
+    password
+  } = req.body;
+
+  const hashedPassword = await bcrypt.hash(password, 8)
+
+  const admin = new Admin({
+    ...req.body,
+    password: hashedPassword
+  })
+  admin.save().then((data) => res.json(data)).catch(err => res.send(err))
+}

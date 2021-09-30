@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
-const {Schema} = mongoose;
+const {
+  Schema
+} = mongoose;
 
 const adminSchema = new Schema({
   email: {
@@ -16,6 +18,10 @@ const adminSchema = new Schema({
   phone: {
     type: String,
     required: true
+  },
+  role: {
+    type: String,
+    default: 'admin'
   },
   createdAt: String,
   isDeleted: {
