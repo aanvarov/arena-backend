@@ -1,3 +1,3 @@
 module.exports = {
-  SECRET_KEY: 'arenakeysecret01'
-}
+  SECRET_KEY: "arenakeysecret01",
+};

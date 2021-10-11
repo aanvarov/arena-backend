@@ -6,6 +6,7 @@ const playstationSchema = new Schema({
   number: {
     type: Number,
     required: true,
+    unique: true,
   },
   type: {
     type: String,
@@ -21,8 +22,8 @@ const playstationSchema = new Schema({
     type: Number,
     default: 6000,
   },
-  totatTime: {
-    type: String,
+  totalTime: {
+    type: Date,
     default: "",
   },
   totalEarning: {

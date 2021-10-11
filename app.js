@@ -10,35 +10,41 @@ const localDatabase = "mongodb://localhost/arena";
 
 const playstationRouter = require("./routes/playstations");
 const foodRouter = require("./routes/foods");
-const adminRouter = require('./routes/admins');
-const authRouter = require('./routes/auth')
+const adminRouter = require("./routes/admins");
+const authRouter = require("./routes/auth");
+const dayRouter = require("./routes/day");
 
 const app = express();
 const server = http.createServer(app);
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(cors({
-  credentials: true,
-  origin: true
-}));
+app.use(
+  cors({
+    credentials: true,
+    origin: true,
+  })
+);
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: false
-}));
+app.use(
+  express.urlencoded({
+    extended: false,
+  })
+);
 
 app.use("/auth", authRouter);
 app.use("/playstations", playstationRouter);
 app.use("/foods", foodRouter);
 app.use("/admins", adminRouter);
+app.use("/day", dayRouter);
 
 mongoose
   .connect(localDatabase, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then(() => {
     console.log("LocalDatabase is connected");
   })
   .catch((error) => console.log(error));
 
-server.listen(port, () => console.log("Server is runing on", port));
+server.listen(port, () => console.log("Server is running on", port));
