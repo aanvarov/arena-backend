@@ -26,9 +26,6 @@ const daySchema = new Schema({
     type: Boolean,
     default: false,
   },
-  updatedAt: {
-    type: String,
-  },
 });
 
 daySchema.plugin(mongoosePaginate);

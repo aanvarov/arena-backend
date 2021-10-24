@@ -12,7 +12,7 @@ const playstationRouter = require("./routes/playstations");
 const foodRouter = require("./routes/foods");
 const adminRouter = require("./routes/admins");
 const authRouter = require("./routes/auth");
-const dayRouter = require("./routes/day");
+const dayRouter = require("./routes/days");
 
 const app = express();
 const server = http.createServer(app);
@@ -35,7 +35,7 @@ app.use("/auth", authRouter);
 app.use("/playstations", playstationRouter);
 app.use("/foods", foodRouter);
 app.use("/admins", adminRouter);
-app.use("/day", dayRouter);
+app.use("/days", dayRouter);
 
 mongoose
   .connect(localDatabase, {
