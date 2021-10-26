@@ -9,18 +9,20 @@ const daySchema = new Schema({
     default: [],
   },
   startedAt: {
-    type: String,
-    default: new Date(),
+    type: Number,
+    default: new Date().getTime(),
   },
   closedAt: {
-    type: String,
+    type: Number,
+    default: null,
   },
   createdAt: {
     type: String,
     default: new Date(),
   },
   totalTime: {
-    type: Date,
+    type: Number,
+    default: null,
   },
   isClosed: {
     type: Boolean,

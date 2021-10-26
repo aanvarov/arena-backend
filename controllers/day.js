@@ -5,19 +5,44 @@ exports.createNewDay = (req, res) => {
     ...req,
   })
     .then((data) => {
-      res.json(data);
+      res.json({
+        day: data,
+        dayId: data._id,
+        success: true,
+      });
       console.log("createdNEWDay", data);
     })
     .catch((err) => res.send(err));
 };
 
-// exports.findNotClosed = (req, res) => {
-//   Day.find({
-//     isClosed: false,
-//   })
-//     .then((data) => {
-//       res.json(data);
-//       console.log("nottttttt", data);
-//     })
-//     .catch((err) => res.send(err));
-// };
+exports.closeDay = (req, res) => {
+  const { startedAt } = req.body;
+  const { _id } = req.params;
+  const closedDate = new Date().getTime();
+  const totalTime = closedDate - startedAt;
+  Day.findByIdAndUpdate(
+    _id,
+    {
+      isClosed: true,
+      closedAt: closedDate,
+      totalTime,
+    },
+    {
+      new: true,
+    }
+  )
+    .then((data) => {
+      res.json({
+        success: true,
+        payload: data,
+        msg: "Day closed successfully",
+      });
+      console.log(data);
+    })
+    .catch((err) => {
+      res.json({
+        success: false,
+        msg: err.message,
+      });
+    });
+};

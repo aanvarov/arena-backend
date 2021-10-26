@@ -13,10 +13,9 @@ const playstationSchema = new Schema({
     default: "ps3",
     enum: ["ps3", "ps4", "ps5"],
   },
-  status: {
-    type: String,
-    default: "free",
-    enum: ["free", "busy"],
+  isFree: {
+    type: Boolean,
+    default: false,
   },
   hourlyPrice: {
     type: Number,
@@ -29,6 +28,11 @@ const playstationSchema = new Schema({
   totalEarning: {
     type: Number,
     default: 0,
+  },
+  numOfPeople: {
+    type: Number,
+    default: 1,
+    enum: [1, 2, 3, 4],
   },
   createdAt: {
     default: Date.now(),

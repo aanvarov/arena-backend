@@ -23,13 +23,13 @@ exports.fetchPlaystationById = (req, res) => {
 };
 
 exports.updateStatus = (req, res) => {
-  const { status } = req.body;
+  const { isFree } = req.body;
   const { _id } = req.params;
-
+  console.log("updateStatus", isFree, _id);
   Playstations.findByIdAndUpdate(
     _id,
     {
-      status,
+      isFree,
     },
     {
       new: true,
