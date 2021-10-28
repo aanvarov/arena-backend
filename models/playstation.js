@@ -47,6 +47,10 @@ const playstationSchema = new Schema({
     default: null,
   },
   isDeleted: { type: Boolean, default: false },
+  club: {
+    type: Schema.Types.ObjectId,
+    ref: "Club",
+  },
 });
 
 playstationSchema.plugin(mongoosePaginate);

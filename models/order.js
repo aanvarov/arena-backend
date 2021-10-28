@@ -7,6 +7,26 @@ const orderSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Playstation",
   },
+  startedAt: {
+    type: Number,
+    default: new Date().getTime(),
+  },
+  closedAt: {
+    type: Number,
+    default: null,
+  },
+  totalTime: {
+    type: Number,
+    default: null,
+  },
+  price: {
+    type: Number,
+    default: null,
+  },
+  numOfPeople: {
+    type: Number,
+    default: 0,
+  },
   foods: {
     type: [Schema.Types.ObjectId],
     ref: "Food",
@@ -16,8 +36,16 @@ const orderSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Day",
   },
+  isClosed: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
     type: String,
+  },
+  club: {
+    type: Schema.Types.ObjectId,
+    ref: "Club",
   },
 });
 

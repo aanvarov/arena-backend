@@ -2,23 +2,27 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const mongoosePaginate = require("mongoose-paginate-v2");
 
-const foodSchema = new Schema({
+const clubSchema = new Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   name: {
     type: String,
     required: true,
   },
-  type: {
-    type: String,
-    required: true,
-    enum: ["drinks", "sweets"],
-  },
-  price: {
+  phoneNumber: {
     type: String,
     required: true,
   },
-  img: {
-    type: Schema.Types.ObjectId,
-    ref: "File",
+  password: {
+    type: String,
+    required: true,
+  },
+  role: {
+    type: String,
+    default: "club",
   },
   isDeleted: {
     type: Boolean,
@@ -32,13 +36,9 @@ const foodSchema = new Schema({
     type: Date,
     default: null,
   },
-  club: {
-    type: Schema.Types.ObjectId,
-    ref: "Club",
-  },
 });
 
-foodSchema.plugin(mongoosePaginate);
-const Foods = mongoose.model("Food", foodSchema);
+clubSchema.plugin(mongoosePaginate);
+const Clubs = mongoose.model("Club", clubSchema);
 
-module.exports = Foods;
+module.exports = Clubs;

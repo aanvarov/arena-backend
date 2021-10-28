@@ -28,6 +28,10 @@ const daySchema = new Schema({
     type: Boolean,
     default: false,
   },
+  club: {
+    type: Schema.Types.ObjectId,
+    ref: "Club",
+  },
 });
 
 daySchema.plugin(mongoosePaginate);

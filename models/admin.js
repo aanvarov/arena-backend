@@ -1,38 +1,40 @@
-const mongoose = require('mongoose')
-const {
-  Schema
-} = mongoose;
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 const adminSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   name: String,
   dob: String,
   phone: {
     type: String,
-    required: true
+    required: true,
   },
   role: {
     type: String,
-    default: 'admin'
+    default: "admin",
   },
   createdAt: {
     type: String,
-    default: new Date()
+    default: new Date(),
   },
   isDeleted: {
     type: Boolean,
-    default: false
-  }
-})
+    default: false,
+  },
+  club: {
+    type: Schema.Types.ObjectId,
+    ref: "Club",
+  },
+});
 
-const Admin = mongoose.model('Admins', adminSchema);
+const Admin = mongoose.model("Admins", adminSchema);
 
-module.exports = Admin
+module.exports = Admin;

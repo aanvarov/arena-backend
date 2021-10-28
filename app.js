@@ -13,6 +13,7 @@ const foodRouter = require("./routes/foods");
 const adminRouter = require("./routes/admins");
 const authRouter = require("./routes/auth");
 const dayRouter = require("./routes/days");
+const clubRouter = require("./routes/clubs");
 
 const app = express();
 const server = http.createServer(app);
@@ -36,6 +37,7 @@ app.use("/playstations", playstationRouter);
 app.use("/foods", foodRouter);
 app.use("/admins", adminRouter);
 app.use("/days", dayRouter);
+app.use("/clubs", clubRouter);
 
 mongoose
   .connect(localDatabase, {
@@ -47,4 +49,4 @@ mongoose
   })
   .catch((error) => console.log(error));
 
-server.listen(port, () => console.log("Server is running on", port));
+server.listen(port, () => console.log("Server is running on port: ", port));
