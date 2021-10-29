@@ -65,7 +65,6 @@ exports.deleteFoodById = (req, res) => {
 };
 
 exports.fetchAllPlaystations = (req, res) => {
-  console.log("object");
   Playstations.find({ isDeleted: false })
     .then((playstations) => res.json(playstations))
     .catch((err) => res.send(err));

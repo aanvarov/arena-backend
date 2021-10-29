@@ -14,6 +14,7 @@ const adminRouter = require("./routes/admins");
 const authRouter = require("./routes/auth");
 const dayRouter = require("./routes/days");
 const clubRouter = require("./routes/clubs");
+const orderRouter = require("./routes/orders");
 
 const app = express();
 const server = http.createServer(app);
@@ -38,6 +39,7 @@ app.use("/foods", foodRouter);
 app.use("/admins", adminRouter);
 app.use("/days", dayRouter);
 app.use("/clubs", clubRouter);
+app.use("/orders", orderRouter);
 
 mongoose
   .connect(localDatabase, {

@@ -29,11 +29,6 @@ const playstationSchema = new Schema({
     type: Number,
     default: 0,
   },
-  numOfPeople: {
-    type: Number,
-    default: 1,
-    enum: [1, 2, 3, 4],
-  },
   createdAt: {
     default: Date.now(),
     type: Date,

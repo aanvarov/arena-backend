@@ -3,15 +3,23 @@ const { Schema } = mongoose;
 const mongoosePaginate = require("mongoose-paginate-v2");
 
 const orderSchema = new Schema({
-  playstation: {
+  playstationId: {
     type: Schema.Types.ObjectId,
     ref: "Playstation",
   },
-  startedAt: {
+  tableNumber: {
     type: Number,
-    default: new Date().getTime(),
+    default: null,
   },
-  closedAt: {
+  startedAtTime: {
+    type: Number,
+    default: () => new Date().getTime(),
+  },
+  hourlyPrice: {
+    type: Number,
+    default: null,
+  },
+  closedAtTime: {
     type: Number,
     default: null,
   },
@@ -42,6 +50,15 @@ const orderSchema = new Schema({
   },
   createdAt: {
     type: String,
+    default: () => new Date().toString(),
+  },
+  closedAt: {
+    type: String,
+    default: null,
+  },
+  updatedAt: {
+    type: Date,
+    default: null,
   },
   club: {
     type: Schema.Types.ObjectId,
