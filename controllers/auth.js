@@ -1,17 +1,25 @@
 const bcrypt = require("bcrypt");
 const Admins = require("../models/admin");
+const Clubs = require("../models/club");
 
 const { createToken } = require("../utils/index");
 
 exports.signIn = async (req, res) => {
-  console.log({ ...req.body });
+  // console.log({ ...req.body });
   const { password, phone, role } = req.body;
   try {
-    const admin = await Admins.findOne({
-      phone: phone.trim(),
-    });
-    if (admin) {
-      const { password: hashedPassword, _id } = admin;
+    let user;
+    if (role === "club") {
+      user = await Clubs.findOne({
+        phone: phone.trim(),
+      });
+    } else {
+      user = await Admins.findOne({
+        phone: phone.trim(),
+      });
+    }
+    if (user) {
+      const { password: hashedPassword, _id } = user;
       const isPasswordCorrect = await bcrypt.compare(password, hashedPassword);
       if (isPasswordCorrect) {
         const token = createToken({
@@ -19,7 +27,7 @@ exports.signIn = async (req, res) => {
           role,
         });
         res.json({
-          user: admin,
+          user: user,
           token,
           success: true,
         });

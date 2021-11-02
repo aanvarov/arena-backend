@@ -1,4 +1,5 @@
 const Order = require("../models/order");
+const Day = require("../models/day");
 
 exports.createOrder = (req, res) => {
   const { numOfPeople, hourlyPrice } = req.body;
@@ -6,13 +7,16 @@ exports.createOrder = (req, res) => {
   // if numOfPeople more than one, adding 2000 for each extra player
   const priceForAnHourByNumOfPeople =
     numOfPeople > 1 ? hourlyPrice + (numOfPeople - 1) * 2000 : hourlyPrice;
-  console.log("createOrder", { ...req.body });
+  // console.log("createOrder", { ...req.body });
   Order.create({
     ...req.body,
     hourlyPrice: priceForAnHourByNumOfPeople,
   })
     .then((data) => {
       console.log("dfefefe", data);
+      Day.findByIdAndUpdate(data.day, { $addToSet: { orders: data._id } })
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err));
       res.json({ success: true, payload: data, msg: "order_created" });
     })
     .catch((err) => {
@@ -22,8 +26,7 @@ exports.createOrder = (req, res) => {
 };
 
 exports.closeOrder = (req, res) => {
-  console.log({ ...req.body });
-  const { id } = req.params;
+  const { _id } = req.params;
   const { startedAtTime, numOfPeople, hourlyPrice } = req.body;
   const closedAt = new Date().toString();
   // getting time in millisecond
@@ -46,8 +49,9 @@ exports.closeOrder = (req, res) => {
     totalTime,
     price,
   };
-  Order.findByIdAndUpdate(id, { $set: updatedData }, { new: true })
+  Order.findByIdAndUpdate(_id, { $set: updatedData }, { new: true })
     .then((data) => {
+      console.log("object", data);
       res.json({ success: true, payload: data, msg: "order_closed" });
     })
     .catch((err) => {
@@ -78,8 +82,9 @@ exports.deleteOrderById = (req, res) => {
 };
 
 exports.fetchAllOrdersByDay = (req, res) => {
-  Order.find({ isDeleted: false })
-    .then((foods) => res.json(foods))
+  const { _id } = req.params;
+  Order.find({ isClosed: false, day: _id })
+    .then((orders) => res.json(orders))
     .catch((err) => res.send(err));
 };
 

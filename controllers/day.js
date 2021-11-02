@@ -2,7 +2,7 @@ const Day = require("../models/day");
 
 exports.createNewDay = (req, res) => {
   Day.create({
-    ...req,
+    ...req.body,
   })
     .then((data) => {
       res.json({
@@ -10,7 +10,6 @@ exports.createNewDay = (req, res) => {
         dayId: data._id,
         success: true,
       });
-      console.log("createdNEWDay", data);
     })
     .catch((err) => res.send(err));
 };
@@ -37,7 +36,7 @@ exports.closeDay = (req, res) => {
         payload: data,
         msg: "Day closed successfully",
       });
-      console.log(data);
+      // console.log(data);
     })
     .catch((err) => {
       res.json({

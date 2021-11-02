@@ -15,6 +15,7 @@ const clubSchema = new Schema({
   phoneNumber: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -30,7 +31,7 @@ const clubSchema = new Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: () => new Date().toString(),
   },
   deletedAt: {
     type: Date,

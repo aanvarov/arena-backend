@@ -56,10 +56,6 @@ const orderSchema = new Schema({
     type: String,
     default: null,
   },
-  updatedAt: {
-    type: Date,
-    default: null,
-  },
   club: {
     type: Schema.Types.ObjectId,
     ref: "Club",

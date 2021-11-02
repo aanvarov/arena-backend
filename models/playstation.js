@@ -15,15 +15,15 @@ const playstationSchema = new Schema({
   },
   isFree: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   hourlyPrice: {
     type: Number,
     default: 6000,
   },
   totalTime: {
-    type: Date,
-    default: "",
+    type: Number,
+    default: 0,
   },
   totalEarning: {
     type: Number,

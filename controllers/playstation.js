@@ -1,6 +1,7 @@
 const Playstations = require("../models/playstation");
 
 exports.createPlaystation = (req, res) => {
+  // console.log({ ...req.body });
   Playstations.create({
     ...req.body,
   })
@@ -14,7 +15,7 @@ exports.createPlaystation = (req, res) => {
 
 exports.fetchPlaystationById = (req, res) => {
   const { _id } = req.params;
-  console.log("dasdasd", req.params);
+  // console.log("dasdasd", req.params);
   Playstations.findById(_id)
     .then((playstation) => {
       res.json(playstation);
@@ -22,26 +23,29 @@ exports.fetchPlaystationById = (req, res) => {
     .catch((err) => res.send(err));
 };
 
-exports.updateStatus = (req, res) => {
-  const { isFree } = req.body;
+exports.updatePlaystation = (req, res) => {
+  const { isFree, totalEarning, totalTime } = req.body;
+  console.log({ ...req.body });
   const { _id } = req.params;
-  console.log("updateStatus", isFree, _id);
   Playstations.findByIdAndUpdate(
     _id,
     {
       isFree,
+      totalEarning,
+      totalTime,
     },
     {
       new: true,
     }
   )
     .then((data) => {
+      console.log("updatePlay", data);
       res.json({
         success: true,
         payload: data,
         msg: "Status has been updated successfully",
       });
-      console.log(data);
+      // console.log(data);
     })
     .catch((err) => {
       res.json({
@@ -51,7 +55,7 @@ exports.updateStatus = (req, res) => {
     });
 };
 
-exports.deleteFoodById = (req, res) => {
+exports.deletePlaystationById = (req, res) => {
   const { _id } = req.params;
   const updatedData = {
     isDeleted: true,
