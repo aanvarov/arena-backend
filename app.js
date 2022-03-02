@@ -34,7 +34,7 @@ app.use(
 );
 
 app.use('/', (req, res, next) => {
-  res.send('<h1>Hello World</h1>');
+  res.send('<h1>Hello Fayozbek</h1>');
 });
 
 app.use('/auth', authRouter);
